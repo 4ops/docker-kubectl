@@ -1,3 +1,9 @@
+# Kubectl docker image
+
+[![](https://images.microbadger.com/badges/image/4ops/kubectl.svg)](https://microbadger.com/images/4ops/kubectl "Get your own image badge on microbadger.com")
+
+Simple alpine-based docker image with kubernetes tools.
+
 # Components
 
 # kubectl
