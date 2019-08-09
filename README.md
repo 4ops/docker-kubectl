@@ -17,8 +17,8 @@ Project link: <https://kustomize.io>
 Linux CLI example:
 
 ```shell
-$ alias kubectl='docker run 4op/kubectl kubectl'
-$ alias kustomize-'docker run 4op/kubectl kustomize'
+$ alias kubectl='docker run 4ops/kubectl kubectl'
+$ alias kustomize-'docker run 4ops/kubectl kustomize'
 $ kubectl version --client --short
 Client Version: v1.15.2
 $ kustomize version
