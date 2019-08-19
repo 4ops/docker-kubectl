@@ -2,7 +2,7 @@ FROM alpine:3.10 AS builder
 
 RUN apk add wget ca-certificates
 
-ARG KUBECTL_VERSION="1.15.2"
+ARG KUBECTL_VERSION="1.15.3"
 ARG KUSTOMIZE_VERSION="3.1.0"
 
 RUN set -ex \
