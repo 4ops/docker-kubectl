@@ -27,3 +27,7 @@ RUN set -ex \
 FROM alpine:3.10
 
 COPY --from=builder /usr/local/bin /usr/local/bin
+
+RUN set -ex \
+  ; apk add --no-cache openssl \
+  ; openssl version
