@@ -2,8 +2,8 @@ FROM alpine:3.10 AS builder
 
 RUN apk add wget ca-certificates
 
-ARG KUBECTL_VERSION="1.15.3"
-ARG KUSTOMIZE_VERSION="3.1.0"
+ARG KUBECTL_VERSION="1.15.4"
+ARG KUSTOMIZE_VERSION="3.2.0"
 
 RUN set -ex \
   ; KUBECTL_URL="https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl" \
@@ -23,6 +23,12 @@ RUN set -ex \
   ; mv $KUSTOMIZE_BINARY /usr/local/bin/kustomize \
   ; ls -la /usr/local/bin/ \
   ; kustomize version
+
+COPY scripts /scripts
+
+RUN set -ex \
+  ; chmod 0755 /scripts/* \
+  ; cp /scripts/* /usr/local/bin/
 
 FROM alpine:3.10
 
