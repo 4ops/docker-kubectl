@@ -28,14 +28,13 @@ COPY scripts /scripts
 
 RUN set -ex \
   ; chmod 0755 /scripts/* \
-  ; cp /scripts/* /usr/local/bin/ \
-  ; apk add git \
-  ; git --version
+  ; cp /scripts/* /usr/local/bin/
 
 FROM alpine:3.10
 
 COPY --from=builder /usr/local/bin /usr/local/bin
 
 RUN set -ex \
-  ; apk add --no-cache openssl \
+  ; apk add --no-cache git openssl \
+  ; git --version \
   ; openssl version
