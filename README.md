@@ -24,6 +24,12 @@ OpenSSL is a robust, commercial-grade, and full-featured toolkit for the Transpo
 
 Project link: <https://www.openssl.org>
 
+# Git
+
+Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
+
+Project link: <https://git-scm.com/>
+
 # Usage
 
 Linux CLI example:

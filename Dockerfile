@@ -28,7 +28,9 @@ COPY scripts /scripts
 
 RUN set -ex \
   ; chmod 0755 /scripts/* \
-  ; cp /scripts/* /usr/local/bin/
+  ; cp /scripts/* /usr/local/bin/ \
+  ; apk add git \
+  ; git --version
 
 FROM alpine:3.10
 
