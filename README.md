@@ -18,6 +18,12 @@ Kustomize introduces a template-free way to customize application configuration 
 
 Project link: <https://kustomize.io>
 
+# Helm
+
+The package manager for Kubernetes.
+
+Project link: <https://helm.sh>
+
 # OpenSSL
 
 OpenSSL is a robust, commercial-grade, and full-featured toolkit for the Transport Layer Security (TLS) and Secure Sockets Layer (SSL) protocols.

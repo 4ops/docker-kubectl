@@ -2,8 +2,9 @@ FROM alpine:3.10 AS builder
 
 RUN apk add wget ca-certificates
 
-ARG KUBECTL_VERSION="1.15.4"
-ARG KUSTOMIZE_VERSION="3.2.0"
+ARG KUBECTL_VERSION="1.16.0"
+ARG KUSTOMIZE_VERSION="3.2.1"
+ARG HELM_VERSION="2.14.3"
 
 RUN set -ex \
   ; KUBECTL_URL="https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl" \
@@ -13,16 +14,31 @@ RUN set -ex \
   ; kubectl version --short --client
 
 RUN set -ex \
-  ; KUSTOMIZE_BASE_URL="https://github.com/kubernetes-sigs/kustomize/releases/download/v${KUSTOMIZE_VERSION}" \
-  ; KUSTOMIZE_BINARY="kustomize_${KUSTOMIZE_VERSION}_linux_amd64" \
+  ; KUSTOMIZE_BASE_URL="https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv${KUSTOMIZE_VERSION}" \
+  ; KUSTOMIZE_BINARY="kustomize_kustomize.v${KUSTOMIZE_VERSION}_linux_amd64" \
   ; KUSTOMIZE_CHECKSUMS="checksums.txt" \
   ; wget "${KUSTOMIZE_BASE_URL}/${KUSTOMIZE_BINARY}" \
   ; wget "${KUSTOMIZE_BASE_URL}/${KUSTOMIZE_CHECKSUMS}" \
-  ; grep "${KUSTOMIZE_BINARY}" $KUSTOMIZE_CHECKSUMS | sha256sum -c - \
-  ; chmod 0755 $KUSTOMIZE_BINARY \
-  ; mv $KUSTOMIZE_BINARY /usr/local/bin/kustomize \
+  ; SHA256SUM=`grep linux_amd64 ${KUSTOMIZE_CHECKSUMS} | cut -d' ' -f1` \
+  ; echo "${SHA256SUM}  ${KUSTOMIZE_BINARY}" | sha256sum -c - \
+  ; chmod 0755 ${KUSTOMIZE_BINARY} \
+  ; mv ${KUSTOMIZE_BINARY} /usr/local/bin/kustomize \
   ; ls -la /usr/local/bin/ \
   ; kustomize version
+
+RUN set -ex \
+  ; HELM_BASE_URL="https://get.helm.sh" \
+  ; HELM_PACKAGE="helm-v${HELM_VERSION}-linux-amd64.tar.gz" \
+  ; HELM_CHECKSUMS="${HELM_PACKAGE}.sha256" \
+  ; wget "${HELM_BASE_URL}/${HELM_PACKAGE}" \
+  ; wget "${HELM_BASE_URL}/${HELM_CHECKSUMS}" \
+  ; SHA256SUM=`cat ${HELM_CHECKSUMS}` \
+  ; echo "${SHA256SUM}  ${HELM_PACKAGE}" | sha256sum -c - \
+  ; tar xzf ${HELM_PACKAGE} \
+  ; mv ./linux-amd64/helm /usr/local/bin/helm \
+  ; chmod 0755 /usr/local/bin/helm \
+  ; ls -la /usr/local/bin/ \
+  ; helm version --client --short
 
 COPY scripts /scripts
 
