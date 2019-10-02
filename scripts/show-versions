@@ -1,0 +1,7 @@
+#!/bin/sh
+
+kubectl version --short --client
+kustomize version
+helm version --client --short
+git --version
+openssl version
