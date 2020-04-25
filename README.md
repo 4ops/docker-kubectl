@@ -84,3 +84,4 @@ spec:
 - `KUBE_CA_PEM` - PEM-encoded certificate (or path to cert file) for TLS verification
 - `KUBE_NAMESPACE` - default namespace for kubeconfig context (default: `default`)
 - `KUBE_TOKEN` - auth token
+- `DEBUG` - enable entrypoint script tracing
