@@ -1,5 +1,7 @@
 # Kubectl docker image
 
+[![](https://images.microbadger.com/badges/image/4ops/kubectl.svg)](https://microbadger.com/images/4ops/kubectl "Get your own image badge on microbadger.com")
+
 Minimal docker image based on busybox with kubeconfig automation.
 
 # Components
