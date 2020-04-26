@@ -1,6 +1,6 @@
 # Kubectl docker image
 
-[![](https://images.microbadger.com/badges/image/4ops/kubectl.svg)](https://microbadger.com/images/4ops/kubectl "Get your own image badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/4ops/kubectl:1.16.3.svg)](https://microbadger.com/images/4ops/kubectl "Get your own image badge on microbadger.com")
 
 Minimal docker image based on busybox with kubeconfig automation.
 
@@ -30,7 +30,7 @@ $ docker run \
     --rm \
     --interactive \
     --tty \
-    4ops/kubectl:1.18.2 \
+    4ops/kubectl:1.16.3 \
     get pods
 ```
 
@@ -42,7 +42,7 @@ From command line:
 $ kubectl run "get-pods-example" \
     --rm="true" \
     --restart="Never" \
-    --image="4ops/kubectl:1.18.2" \
+    --image="4ops/kubectl:1.16.3" \
     --stdin \
     --tty \
     -- \
@@ -60,7 +60,7 @@ metadata:
 spec:
   containers:
     - name: "kubectl"
-      image: "4ops/kubectl:1.18.2"
+      image: "4ops/kubectl:1.16.3"
       args: ["get", "pods"]
 ```
 
