@@ -1,6 +1,6 @@
 FROM busybox:1.31 AS installer
 
-ARG VERSION="1.17.4"
+ARG VERSION="1.17.5"
 
 ADD https://storage.googleapis.com/kubernetes-release/release/v${VERSION}/bin/linux/amd64/kubectl /install/kubectl
 COPY --chown=root:root entrypoint.sh /install/entrypoint
